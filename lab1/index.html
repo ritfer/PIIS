@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Database</title>
+    <script>
+        // Скрипт для работы с личной базой данных фильмов
+        window.onload = function() {
+            // 1. Запросить количество просмотренных фильмов
+            const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?');
+
+            // 2. Создать объект personalMovieDB
+            const personalMovieDB = {
+                count: numberOfFilms,
+                movies: {}
+            };
+
+            // 3. Задаем вопросы дважды
+            for (let i = 0; i < numberOfFilms ; i++) {
+                let filmName;
+                let filmRating;
+
+                // Проверка на валидность ввода названия фильма
+                while (true) {
+                    filmName = prompt('Один из последних просмотренных фильмов?');
+                    if (filmName && filmName.length <= 50) {
+                        break;
+                    } else {
+                        alert('Введите корректное название фильма (не пустое и не более 50 символов).');
+                    }
+                }
+
+                // Проверка на валидность ввода оценки
+                while (true) {
+                    filmRating = prompt('На сколько оцените его?');
+                    if (filmRating && /^\d+$/.test(filmRating)) {
+                        break;
+                    } else {
+                        alert('Введите корректную оценку.');
+                    }
+                }
+
+                // 5. Записываем данные в объект movies
+                personalMovieDB.movies[filmName] = filmRating;
+            }
+
+            // 6. Выводим объект в консоль
+            console.log(personalMovieDB);
+        };
+    </script>
+</head>
+<body>
+    <h1>Личная база фильмов</h1>
+    <h2>откройте консоль (ктрл+шифт+ай)</h2>
+</body>
+</html>
