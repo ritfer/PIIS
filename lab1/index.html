@@ -33,7 +33,7 @@
                 // Проверка на валидность ввода оценки
                 while (true) {
                     filmRating = prompt('На сколько оцените его?');
-                    if (filmRating && /^\d+$/.test(filmRating)) {
+                    if (filmRating && /^\d+$/.test(filmRating) && filmRating <= "10" && filmRating > "0") {
                         break;
                     } else {
                         alert('Введите корректную оценку.');
