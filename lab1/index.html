@@ -1,5 +1,4 @@
 <!doctype html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Movie Database</title>
@@ -30,7 +29,7 @@
                 }
                 while (true) {
                     filmRating = prompt('На сколько оцените его?');
-                    if (filmRating && filmRating <= 10 && filmRating > 0) {
+                    if (filmRating && filmRating < 11 && filmRating > 0) {
                         break;
                     } else {
                         alert('Введите корректную оценку (от 1 до 10).');
