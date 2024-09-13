@@ -2,3 +2,4 @@
 
 
 <a href="https://ritfer.github.io/PIIS/lab1/index.html">Ссылка на лабу 1</a>
+<a href="https://ritfer.github.io/PIIS/lab2/index.html">Ссылка на лабу 2</a>
