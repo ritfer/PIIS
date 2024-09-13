@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <title>Movie Database</title>
     <script>
-        // Скрипт для работы с личной базой данных фильмов
-        window.onload = function() {
-            // 1. Запросить количество просмотренных фильмов
+            window.onload = function() {
+            
             const numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?');
 
-            // 2. Создать объект personalMovieDB
+        
             const personalMovieDB = {
                 count: numberOfFilms,
                 movies: {}
             };
 
-            // 3. Задаем вопросы дважды
+         
             for (let i = 0; i < numberOfFilms ; i++) {
                 let filmName;
                 let filmRating;
 
-                // Проверка на валидность ввода названия фильма
+                // Проверки
                 while (true) {
                     filmName = prompt('Один из последних просмотренных фильмов?');
                     if (filmName && filmName.length <= 50) {
@@ -29,22 +28,19 @@
                         alert('Введите корректное название фильма (не пустое и не более 50 символов).');
                     }
                 }
-
-                // Проверка на валидность ввода оценки
                 while (true) {
                     filmRating = prompt('На сколько оцените его?');
-                    if (filmRating && /^\d+$/.test(filmRating) && filmRating <= "10" && filmRating > "0") {
+                    if (filmRating && /^\d+$/.test(filmRating) && filmRating <= 10 && filmRating > 0) {
                         break;
                     } else {
-                        alert('Введите корректную оценку.');
+                        alert('Введите корректную оценку (от 1 до 10).');
                     }
                 }
 
-                // 5. Записываем данные в объект movies
                 personalMovieDB.movies[filmName] = filmRating;
             }
 
-            // 6. Выводим объект в консоль
+            //  Вывод 
             console.log(personalMovieDB);
         };
     </script>
