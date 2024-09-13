@@ -30,7 +30,7 @@
                 }
                 while (true) {
                     filmRating = prompt('На сколько оцените его?');
-                    if (filmRating && /^\d+$/.test(filmRating) && filmRating <= 10 && filmRating > 0) {
+                    if (filmRating && filmRating <= 10 && filmRating > 0) {
                         break;
                     } else {
                         alert('Введите корректную оценку (от 1 до 10).');
