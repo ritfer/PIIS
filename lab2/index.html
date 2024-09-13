@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <title>Movie Database</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ecabab;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #525860;
+        }
+    </style>
+</head>
+<body>
+    <h1>Личная база фильмов</h1>
+    <div id="movieTable"></div>
+
+    <script>
+        // объект
+        const films = {
+            privat: false,
+            movies: {
+                "Фильм 1": 8,
+                "Фильм 2": 7,
+                "Фильм 3": 9
+            }
+        };
+        // films.privat = true; // чтобы скрыть при желании 
+
+        // таблица
+        function table() {
+            if (films.privat) {
+                return;
+            }
+
+            const table = document.createElement('table');
+            const Hrow = document.createElement('tr');
+            const Htitle = document.createElement('th');
+            const Hrating = document.createElement('th');
+
+            Htitle.textContent = 'Название фильма';
+            Hrating.textContent = 'Оценка';
+            Hrow.appendChild(Htitle);
+            Hrow.appendChild(Hrating);
+            table.appendChild(Hrow);
+
+            for (const [film, rating] of Object.entries(films.movies)) {
+                const row = document.createElement('tr');
+                const film1 = document.createElement('td');
+                const rating1 = document.createElement('td');
+
+                film1.textContent = film;
+                rating1.textContent = rating;
+                row.appendChild(film1);
+                row.appendChild(rating1);
+                table.appendChild(row);
+            }
+
+            // Добавляем таблицу на страницу
+            document.getElementById('movieTable').appendChild(table);
+        }
+        table();
+    </script>
+</body>
+</html>
