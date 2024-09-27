@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Shirt Collection</title>
+    <style>
+        .shirt-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .shirt {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="shirt-container" id="shirtContainer"></div>
+
+<script src="shirts.js"></script>
+<script>
+    const shirtContainer = document.getElementById('shirtContainer');
+
+    shirts.forEach(shirt => {
+        // Создание контейнера для майки
+        const shirtDiv = document.createElement('div');
+        shirtDiv.classList.add('shirt');
+
+        // Добавление названия
+        const title = document.createElement('h3');
+        title.textContent = shirt.name;
+
+        // Добавление описания
+       // const description = document.createElement('p');
+       // description.textContent = shirt.description;
+
+        // Добавление цены
+        const price = document.createElement('p');
+        price.textContent = shirt.price;
+
+        // Обработка цветов и создание изображений
+        const colorKeys = Object.keys(shirt.colors);
+        colorKeys.forEach(color => {
+            const imgContainer = document.createElement('div');
+
+            // Изображение передней части
+            const imgFront = document.createElement('img');
+            imgFront.src = shirt.colors[color].front;
+            imgFront.alt = `${shirt.name} - ${color} Front`;
+
+            // Обработка ошибок для изображения
+            imgFront.onerror = function() {
+                imgFront.src = shirt.default.front; // Замена на изображение-заглушку
+                imgFront.alt = 'Image not available';
+            };
+
+            imgContainer.appendChild(imgFront);
+            shirtDiv.appendChild(imgContainer);
+        });
+
+        // Кнопки Quick View и See Page
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
+        const quickViewButton = document.createElement('button');
+        quickViewButton.textContent = 'Quick View';
+
+        const seePageButton = document.createElement('button');
+        seePageButton.textContent = 'See Page';
+
+        buttonContainer.appendChild(quickViewButton);
+        buttonContainer.appendChild(seePageButton);
+        
+        // Добавление всех элементов в контейнер майки
+        shirtDiv.appendChild(title);
+       //    shirtDiv.appendChild(description);
+        shirtDiv.appendChild(price);
+        shirtDiv.appendChild(buttonContainer);
+        
+        shirtContainer.appendChild(shirtDiv);
+    });
+</script>
+
+</body>
+</html>
