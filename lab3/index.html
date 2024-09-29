@@ -9,12 +9,14 @@
             margin: 20px;
         }
         .shirt {
+            
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
             width: 200px;
         }
         img {
+            margin: 10px;
             max-width: 100%;
             height: auto;
         }
@@ -64,7 +66,7 @@
 
             imgContainer.appendChild(imgFront);
             shirtDiv.appendChild(imgContainer);
-        });
+        
 
         // Кнопки Quick View и See Page
         const buttonContainer = document.createElement('div');
@@ -78,12 +80,13 @@
 
         buttonContainer.appendChild(quickViewButton);
         buttonContainer.appendChild(seePageButton);
-        
+        shirtDiv.appendChild(buttonContainer);
+        });
         // Добавление всех элементов в контейнер майки
         shirtDiv.appendChild(title);
        //    shirtDiv.appendChild(description);
         shirtDiv.appendChild(price);
-        shirtDiv.appendChild(buttonContainer);
+        
         
         shirtContainer.appendChild(shirtDiv);
     });
