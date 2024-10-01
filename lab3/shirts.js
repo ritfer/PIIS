@@ -31,7 +31,7 @@ const shirts = [{
     "price": "$10.99",
     "colors": {
         "white": {
-            "front": "shirt_images/car-white-front.png",
+            "front": "",
             "back": "shirt_images/car-white-back.png"
         },
         "blue": {
