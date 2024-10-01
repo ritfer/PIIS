@@ -56,6 +56,10 @@
             title.textContent = shirt.name;
             shirtDetailDiv.appendChild(title);
 
+            const price = document.createElement('p');
+            price.textContent = shirt.price;
+            shirtDetailDiv.appendChild(price);
+
             // Изображение
             const img = document.createElement('img');
             img.src = shirt.colors[Object.keys(shirt.colors)[0]].front; // Первое изображение
