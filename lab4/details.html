@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shirt Details</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Светло-серый фон */
+            font-family: Arial, sans-serif; /* Шрифт для всего тела */
+        }
+        .shirt-detail {
+            margin: 20px;
+            text-align: center;
+            background-color: white; /* Белый фон для деталей футболки */
+            padding: 20px;
+            border-radius: 5px; /* Закругленные углы */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для деталей */
+        }
+        .color-buttons {
+            margin-top: 10px;
+        }
+        .color-button {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .toggle-button {
+            margin: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="shirt-detail" id="shirtDetail"></div>
+
+<script src="shirts.js"></script>
+<script>
+    const selectedShirtName = localStorage.getItem('selectedShirt');
+    
+    if (selectedShirtName) {
+        const shirt = shirts.find(s => s.name === selectedShirtName);
+        
+        if (shirt) {
+            const shirtDetailDiv = document.getElementById('shirtDetail');
+
+            // Заголовок
+            const title = document.createElement('h1');
+            title.textContent = shirt.name;
+            shirtDetailDiv.appendChild(title);
+
+            // Изображение
+            const img = document.createElement('img');
+            img.src = shirt.colors[Object.keys(shirt.colors)[0]].front; // Первое изображение
+            img.alt = `${shirt.name} Front`;
+            shirtDetailDiv.appendChild(img);
+
+            // Генерация кнопок для цветов
+            const colorButtons = document.createElement('div');
+            colorButtons.classList.add('color-buttons');
+
+            Object.keys(shirt.colors).forEach(color => {
+                const colorButton = document.createElement('div');
+                colorButton.classList.add('color-button');
+                colorButton.style.backgroundColor = color; // Установка цвета
+                colorButton.title = color; // Подсказка при наведении
+
+                // Добавление обработчика событий для смены цвета
+                colorButton.addEventListener('click', () => {
+                    img.src = shirt.colors[color].front; // Изменение изображения на переднюю сторону выбранного цвета
+                    img.alt = `${shirt.name} - ${color} Front`;
+                    // Сбросить изображение на переднюю сторону при смене цвета
+                    currentSide = 'front';
+                });
+
+                colorButtons.appendChild(colorButton);
+            });
+
+            shirtDetailDiv.appendChild(colorButtons);
+
+            // Кнопки для смены стороны
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+
+            let currentSide = 'front'; // Переменная для отслеживания текущей стороны
+
+            const frontButton = document.createElement('button');
+            frontButton.classList.add('toggle-button');
+            frontButton.textContent = 'Show Front';
+            frontButton.addEventListener('click', () => {
+                img.src = shirt.colors[Object.keys(shirt.colors).find(color => img.src.includes(color))].front; // Показать переднюю сторону
+                img.alt = `${shirt.name} Front`;
+                currentSide = 'front';
+            });
+
+            const backButton = document.createElement('button');
+            backButton.classList.add('toggle-button');
+            backButton.textContent = 'Show Back';
+            backButton.addEventListener('click', () => {
+                img.src = shirt.colors[Object.keys(shirt.colors).find(color => img.src.includes(color))].back; // Показать заднюю сторону
+                img.alt = `${shirt.name} Back`;
+                currentSide = 'back';
+            });
+
+            buttonContainer.appendChild(frontButton);
+            buttonContainer.appendChild(backButton);
+            shirtDetailDiv.appendChild(buttonContainer);
+        }
+    }
+</script>
+
+</body>
+</html>
