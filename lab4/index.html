@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shirt Collection</title>
+    <style>
+        .shirt-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .shirt {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+            margin: 10px; /* Добавлено для отступов между майками */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="shirt-container" id="shirtContainer"></div>
+
+<script src="shirts.js"></script>
+<script>
+    const shirtContainer = document.getElementById('shirtContainer');
+
+    // Объект для отслеживания уникальных названий
+    const displayedNames = {};
+
+    shirts.forEach(shirt => {
+       
+        if (!displayedNames[shirt.name]) {
+            displayedNames[shirt.name] = true; // Отметить название как отображенное
+
+            
+            const shirtDiv = document.createElement('div');
+            shirtDiv.classList.add('shirt');
+
+         
+            const title = document.createElement('h3');
+            title.textContent = shirt.name;
+            shirtDiv.appendChild(title);
+
+           
+            const price = document.createElement('p');
+            price.textContent = shirt.price;
+            //shirtDiv.appendChild(price);
+
+            const colorKeys = Object.keys(shirt.colors);
+            if (colorKeys.length > 0) {
+                const imgContainer = document.createElement('div');
+
+                
+                const firstColor = colorKeys[0];
+
+                
+                const imgFront = document.createElement('img');
+                imgFront.src = shirt.colors[firstColor].front;
+                imgFront.alt = `${shirt.name} - ${firstColor} Front`;
+
+                // Обработка ошибок для изображения
+                imgFront.onerror = function() {
+                    imgFront.src = shirt.default.front;
+                    imgFront.alt = 'Image not available';
+                };
+
+                imgContainer.appendChild(imgFront);
+                shirtDiv.appendChild(imgContainer); 
+            }
+
+            // Кнопки Quick View и See Page
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+
+            const quickViewButton = document.createElement('button');
+            quickViewButton.textContent = 'Quick View';
+
+            const seePageButton = document.createElement('button');
+            seePageButton.textContent = 'See Page';
+     
+            shirtDiv.appendChild(buttonContainer);
+
+            seePageButton.addEventListener('click', () => {
+                localStorage.setItem('selectedShirt', shirt.name); // Сохранение названия футболки
+                window.location.href = 'details.html';
+            });
+
+
+            buttonContainer.appendChild(quickViewButton);
+            buttonContainer.appendChild(seePageButton);
+
+            shirtContainer.appendChild(shirtDiv);
+        }
+    });
+</script>
+
+</body>
+</html>ч
