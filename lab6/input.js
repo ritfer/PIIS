@@ -58,11 +58,3 @@ document.addEventListener('touchstart', (event) => {
     }
 });
 
-squares.forEach(square => {
-    square.addEventListener('wheel', (event) => {
-        event.preventDefault(); 
-        const newSize = Math.max(minSize, square.clientWidth + event.deltaY);
-        square.style.width = newSize + 'px';
-        square.style.height = newSize + 'px';
-    });
-});
