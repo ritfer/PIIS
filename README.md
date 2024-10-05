@@ -6,3 +6,4 @@
 <br><a href="https://ritfer.github.io/PIIS/lab3/index.html">Ссылка на лабу 3</a>
 <br><a href="https://ritfer.github.io/PIIS/lab4/index.html">Ссылка на лабу 4</a>
 <br><a href="https://ritfer.github.io/PIIS/lab5/lab5.html">Ссылка на лабу 5</a>
+<br><a href="https://ritfer.github.io/PIIS/lab6/lab6.html">Ссылка на лабу 6</a>
